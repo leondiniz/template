@@ -1,0 +1,81 @@
+version: '2'
+services:
+  # mongo-db:
+  #   # container_name: postgres_container
+  #   image: postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+  #     POSTGRES_DB: postgresqldatabase
+  #     PGDATA: /data/postgres
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - mongo-db
+  #   volumes:
+  #     # - mongo-db:/data/postgres-test
+  #     # copy the sql script to create tables
+
+  #   restart: unless-stopped
+
+  mongo-db:
+    image: mongo:4.0
+    container_name: mongo-tests
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - mongo-db
+
+  app-test:
+    build:
+      context: ./
+      dockerfile: test.Dockerfile
+
+    container_name: app-tests
+    environment:
+
+      - JWT_ALGORITHM=HS256
+      - JWT_AUDIENCE=app
+      - JWT_URL_RSA_KEY=file:///api/tests/integration/keys/jwk.json
+
+      - AUTH0_CLIENTE_ID=test-id
+      - AUTH0_CLIENT_SECRET=test-secret
+
+      - AUTH0_GRANT_TYPE=client_credentials
+      - MONGO_URI=mongodb://mongoadmin:secret@mongo-tests:27017/mongodatabase?authSource=admin&authMechanism=SCRAM-SHA-1
+      - MONGO_DATABASE=mongodatabase
+      - POSTGRESQL_URI=postgresql://postgres:changeme@mongo-db:5432/postgresqldatabase
+      - JWT_ISSUER=https=//dev-nzseols2.us.auth0.com/
+      - AUTH0_CLIENTE_ID= FVjzOmoM02QG7mqxCjR70FvUbz7x6kn9
+      - AUTH0_CLIENT_SECRET= FeIP-eBGt0hkA5HAp2EA-V9qFZIL1YyUqw7-LOZsF_sgBPADRW_T82Gq3b65fBnO
+      - AUTH0_AUDIENCE= template
+      - AUTH0_GRANT_TYPE= client_credentials
+      - JWT_ALGORITHM=RS256
+      - JWT_URL_RSA_KEY=https://dev-nzseols2.us.auth0.com/.well-known/jwks.json
+      - AUTH0_MANAGEMENT_URL=https://dev-nzseols2.us.auth0.com/oauth/token
+      - CELERY_BROKEN_URL=redis://localhost:6379/0
+      - CELERY_RESULT_URL=redis://localhost:6379/0
+    networks:
+      - mongo-db
+    command:
+      [
+        "./scripts/wait-for-it.sh",
+        "mongo-tests:27017",
+
+        "--",
+        "pytest",
+        "-v",
+        "--cov-config=.coveragerc",
+        "--cov=."
+      ]
+    depends_on:
+      - mongo-db
+
+networks:
+  mongo-db:
+    driver: bridge
+volumes:
+  mongo-db:

@@ -4,7 +4,6 @@ from fastapi.params import Depends
 from fastapi import APIRouter
 from app.dependencies import get_service
 from app.schemas.users import User, UserList
-from fastapi_jwt import JwtAuthorizationCredentials
 
 
 router = APIRouter()
@@ -49,7 +48,6 @@ async def delete_users(
     id: str,
     service: UserService = Depends(
         get_service(UserService)),
-    credentials: User = Depends(get_service(JwtAuthorizationCredentials))
 ):
 
     await service.delete_user_by_id(id)
@@ -65,7 +63,7 @@ async def update_users(
     item: dict,
     service: UserService = Depends(
         get_service(UserService)),
-    credentials: User = Depends(get_service(JwtAuthorizationCredentials))
+
 ):
     await service.update_user_by_id(id, item)
 

@@ -80,7 +80,8 @@ class UserRepository(BaseRepository):
             {'_id': ObjectId(id)}
         )
 
-    async def update_user_by_id(self, id: str, item: Dict) -> User:
+    async def update_user_by_id(
+            self, id: str, item: Dict) -> User:
         """
         delete a user by id
         Parameters:

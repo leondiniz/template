@@ -16,9 +16,6 @@ fastapi-jwt==0.1.8
 databases
 asyncpg
 psycopg2-binary
-celery==5.2.3
-flower
 passlib==1.7.4
 pyperclip==1.8.2
 Pillow==9.2.0
-redis

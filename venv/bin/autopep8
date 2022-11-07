@@ -1,4 +1,4 @@
-#!/home/leonardodiniz/Projetos/template/venv/bin/python
+#!/home/leo/projetos/template/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

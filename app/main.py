@@ -16,7 +16,6 @@ from loguru import logger
 from app.database import close_connection_async, \
     get_mongo_async
 from fastapi_utils.tasks import repeat_every
-from celery import Celery
 
 LOG_LEVEL = logging.getLevelName("INFO")
 

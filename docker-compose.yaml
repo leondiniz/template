@@ -1,17 +1,17 @@
 version: '2'
 services:
-  db:
-    image: mongo:4.0
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
-      - MONGO_INITDB_ROOT_PASSWORD=secret
-    networks:
-      - db
-    volumes:
-      - db:/data/mongodb
+  # db:
+  #   image: mongo:4.0
+  #   container_name: mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+  #     - MONGO_INITDB_ROOT_PASSWORD=secret
+  #   networks:
+  #     - db
+  #   volumes:
+  #     - db:/data/mongodb
   app:
     build:
       context: ./
@@ -45,14 +45,14 @@ services:
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - broker=redis://redis:6379
       - backend=redis://redis:6379
-    networks:
-      - db
-    depends_on:
-      - db
+    # networks:
+    #   - db
+    # depends_on:
+    #   - db
 
-networks:
-  db:
-    driver: bridge
+    # networks:
+    #   db:
+    #     driver: bridge
 
-volumes:
-  db:
+    # volumes:
+    #   db:

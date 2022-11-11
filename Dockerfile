@@ -16,8 +16,6 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-RUN pip install celery[redis]==5.2.7
-
 
 # copy project
 COPY app app

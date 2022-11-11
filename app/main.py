@@ -60,20 +60,20 @@ async def validation_exception_handler(request, exc):
     )
 
 
-origins = [
-    "http://localhost",
-    "http://localhost:4000",
-    "http://localhost:3000"
-    "http://localhost:8000"
-]
+# origins = [
+#     "http://localhost",
+#     "http://localhost:4000",
+#     "http://localhost:3000"
+#     "http://localhost:8000"
+# ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
 @app.on_event('shutdown')

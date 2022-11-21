@@ -23,7 +23,7 @@ make create_docker_mongo-local
 
 ### Executando os fastapi
 
-sem docker
+sem docker(apontar o database no .env)
 
 ``` bash
 make run 

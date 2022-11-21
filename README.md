@@ -15,12 +15,6 @@ pip3 install --upgrade pip
 pip3 install -r requirements.txt
 ```
 
-### Criando o docker mongodb local
-
-``` bash
-make create_docker_mongo-local
-```
-
 ### Executando os fastapi
 
 sem docker(apontar o database no .env)

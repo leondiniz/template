@@ -16,12 +16,5 @@ def get_settings() -> Settings:
 
     _settings.MONGO_URI = os.getenv('MONGO_URI')
     _settings.MONGO_DATABASE = os.getenv('MONGO_DATABASE')
-    # Postgres settings
-    _settings.POSTGRES_HOST = str = os.getenv("host")
-    _settings.POSTGRES_USER = str = os.getenv("user")
-    _settings.POSTGRES_PASSWORD = str = os.getenv("password")
-    _settings.POSTGRES_DATABASE = str = os.getenv("dbname")
-    _settings.POSTGRES_PORT = str = os.getenv("port")
-    _settings.POSTGRESQL_URI = str = os.getenv("POSTGRESQL_URI")
 
     return _settings

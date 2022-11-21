@@ -39,20 +39,3 @@ async def get_database_async() -> Database:
 
 def close_connection_async():
     get_mongo_async().close()
-
-
-async def get_postgresql_async():
-    global _postgresql_async
-    if not _postgresql_async:
-        _postgresql_async = databases.Database(get_settings().POSTGRESQL_URI)
-    return _postgresql_async
-
-
-async def get_postgresql_database_async() -> Database:
-    _postgresql = await get_postgresql_async()
-    await _postgresql.connect()
-    return _postgresql
-
-
-def close_postgresql_connection_async():
-    get_postgresql_async().close()

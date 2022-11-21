@@ -24,27 +24,8 @@ services:
     container_name: app
     environment:
 
-      - JWT_ALGORITHM=HS256
-      - JWT_AUDIENCE=app
-      - JWT_URL_RSA_KEY=file:///api/tests/integration/keys/jwk.json
-      - AUTH0_CLIENTE_ID=test-id
-      - AUTH0_CLIENT_SECRET=test-secret
-      - AUTH0_GRANT_TYPE=client_credentials
       - MONGO_URI=mongodb://mongoadmin:secret@mongodb:27017/mongodatabase?authSource=admin&authMechanism=SCRAM-SHA-1
       - MONGO_DATABASE=mongodatabase
-      - POSTGRESQL_URI=postgresql://postgres:changeme@db:5432/postgresqldatabase
-      - JWT_ISSUER=https=//dev-nzseols2.us.auth0.com/
-      - AUTH0_CLIENTE_ID= FVjzOmoM02QG7mqxCjR70FvUbz7x6kn9
-      - AUTH0_CLIENT_SECRET= FeIP-eBGt0hkA5HAp2EA-V9qFZIL1YyUqw7-LOZsF_sgBPADRW_T82Gq3b65fBnO
-      - AUTH0_AUDIENCE= template
-      - AUTH0_GRANT_TYPE= client_credentials
-      - JWT_ALGORITHM=RS256
-      - JWT_URL_RSA_KEY=https://dev-nzseols2.us.auth0.com/.well-known/jwks.json
-      - AUTH0_MANAGEMENT_URL=https://dev-nzseols2.us.auth0.com/oauth/token
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - broker=redis://redis:6379
-      - backend=redis://redis:6379
     networks:
       - db
     depends_on:

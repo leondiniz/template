@@ -1,7 +1,7 @@
 import asyncpg
 import sqlalchemy
 from tests.unit.helper import set_envs_for_tests
-from tests.unit.database import get_database, get_postgresql_database_async
+from tests.unit.database import get_database
 from app.schemas.users import User
 from tests.unit.settings import get_settings
 from app.repositories.mongodb.users import UserRepository

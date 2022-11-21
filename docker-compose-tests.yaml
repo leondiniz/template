@@ -1,23 +1,5 @@
 version: '2'
 services:
-  # mongo-db:
-  #   # container_name: postgres_container
-  #   image: postgres
-  #   environment:
-  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-  #     POSTGRES_DB: postgresqldatabase
-  #     PGDATA: /data/postgres
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - mongo-db
-  #   volumes:
-  #     # - mongo-db:/data/postgres-test
-  #     # copy the sql script to create tables
-
-  #   restart: unless-stopped
-
   mongo-db:
     image: mongo:4.0
     container_name: mongo-tests
